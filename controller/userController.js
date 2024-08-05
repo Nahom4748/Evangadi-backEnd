@@ -153,25 +153,24 @@ async function getCounts(req, res) {
     res.StatusCodes.json({ msg: "Something went wrong, try again later!" });
   }
 }
+
 async function update(req, res) {
+  const userid = req.params.userid;
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
+  const email = req.body.email;
+
   try {
-    const userid = req.params.userid;
-    const sql =
-      "UPDATE users SET  'firstname'=?, 'lastname'=?, 'email'=? where userid=?";
     await dbConnection.query(
-      sql,
-      [req.body.firstname, req.body.lastname, req.body.email, userid],
-      (err, result) => {
-        if (err) {
-          return result
-            .status(StatusCodes.CONFLICT)
-            .json({ msg: "Opps Error" });
-        }
-        return result.status(StatusCodes.OK).json({ msg: "Updated" });
-      }
+      "UPDATE users SET `firstname`=?, `lastname`=?, `email`=? WHERE userid=?",
+      [firstname, lastname, email, userid]
     );
+
+    return res.status(StatusCodes.OK).json({ msg: "Updated successfully" });
   } catch (error) {
-    return res.status(StatusCodes.CONFLICT).json({ msg: "Opps Error" });
+    console.error(error.message);
+    return res.status(StatusCodes.CONFLICT).json({ msg: "Oops! Error" });
   }
 }
+
 module.exports = { register, login, SingleUser, checkUser, getCounts, update };

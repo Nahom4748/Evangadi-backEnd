@@ -78,7 +78,8 @@ async function allQuestion(req, res) {
     const [questionsRow] = await dbConnection.query(
       `SELECT 
         q.questionid, q.title, q.description, q.userid, q.created_at, 
-        u.username, u.firstname, u.lastname 
+        u.username, u.firstname, u.lastname,
+        (SELECT COUNT(*) FROM answers WHERE answers.questionid = q.questionid) AS total_answers
       FROM questions AS q 
       JOIN users AS u ON q.userid = u.userid`
     );
