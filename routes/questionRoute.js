@@ -6,6 +6,7 @@ const {
   postQuestion,
   allQuestion,
   singleQuestion,
+  SearchByTitle,
 } = require("../controller/questionController");
 
 // postQuestion route
@@ -16,5 +17,8 @@ router.get("", allQuestion);
 
 // check user
 router.post("/:questionid", singleQuestion);
+
+//search using Title
+router.get("/search/:title", SearchByTitle);
 
 module.exports = router;
