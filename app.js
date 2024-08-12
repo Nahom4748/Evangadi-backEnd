@@ -5,9 +5,10 @@ var cors = require("cors");
 const port = 5500;
 
 const corsOptions = {
-  origin: "https://evangadi-forum-fullstack.netlify.app/", // Your frontend URL
+  origin: "https://evangadi-forum-fullstack.netlify.app", // Your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 };
 //cors
 app.use(cors(corsOptions));
