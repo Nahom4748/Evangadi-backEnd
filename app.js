@@ -5,7 +5,7 @@ var cors = require("cors");
 const port = 5500;
 
 const corsOptions = {
-  origin: "http://localhost:5173", // Your frontend URL
+  origin: "https://evangadi-forum-fullstack.netlify.app/", // Your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
