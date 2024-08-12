@@ -4,8 +4,13 @@ const app = express();
 var cors = require("cors");
 const port = 5500;
 
+const corsOptions = {
+  origin: "http://localhost:5173", // Your frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 //cors
-app.use(cors());
+app.use(cors(corsOptions));
 
 //db connection
 const dbConnection = require("./db/dbConfig");
